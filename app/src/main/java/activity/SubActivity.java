@@ -1,4 +1,4 @@
-package ga.adrielwalter.adriworld;
+package activity;
 
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
+import ga.adrielwalter.adriworld.R;
 
 public class SubActivity extends AppCompatActivity {
 
