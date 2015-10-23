@@ -2,4 +2,7 @@
     <string name="app_name">AdriWorld</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="action_settings">Settings</string>
+    <string name="next">Next</string>
+    <string name="title_activity_sub">SubActivity</string>
+    <string name="hello_word">Hello world!</string>
 </resources>
