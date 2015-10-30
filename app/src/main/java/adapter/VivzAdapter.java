@@ -2,6 +2,7 @@ package adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,19 +20,25 @@ import ga.adrielwalter.adriworld.R;
  */
 public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyVieHolder> {
 
-    private LayoutInflater inflater;
-
     List<Information> data = Collections.emptyList();
+    private LayoutInflater inflater;
+    private Context context;
     public VivzAdapter(Context context, List<Information> data){
+        this.context = context;
         inflater = LayoutInflater.from(context);
-
         this.data = data;
+    }
+
+    public  void delete(int position){
+        data.remove(position);
+        notifyItemRemoved(position);
     }
 
     @Override
     public MyVieHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = inflater.inflate(R.layout.custom_row, parent, false);
+        Log.d("VIVZ", "onCreateHolder called");
         MyVieHolder holder = new MyVieHolder(view);
         return holder;
     }
@@ -40,10 +47,9 @@ public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyVieHolder> {
     public void onBindViewHolder(MyVieHolder holder, int position) {
 
         Information current = data.get(position);
-
+        Log.d("VIVZ", "onCreateHolder called" + position);
         holder.title.setText(current.title);
         holder.icon.setImageResource(current.iconId);
-
     }
 
     @Override
@@ -51,7 +57,7 @@ public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyVieHolder> {
         return data.size();
     }
 
-    class MyVieHolder extends RecyclerView.ViewHolder{
+    class MyVieHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView title;
         ImageView icon;
@@ -62,6 +68,14 @@ public class VivzAdapter extends RecyclerView.Adapter<VivzAdapter.MyVieHolder> {
             title = (TextView) itemView.findViewById(R.id.listText);
             icon = (ImageView) itemView.findViewById(R.id.listIcon);
 
+            icon.setOnClickListener(this);
+
+        }
+
+        @Override
+        public void onClick(View v) {
+//            Toast.makeText(context,"Item clicked at"+getPosition(), Toast.LENGTH_SHORT).show();
+            delete(getPosition());
         }
     }
 }

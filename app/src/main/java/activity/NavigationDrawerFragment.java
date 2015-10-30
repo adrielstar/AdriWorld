@@ -67,11 +67,11 @@ public class NavigationDrawerFragment extends Fragment {
         int [] icons = {R.drawable.ic_number1,R.drawable.ic_number2, R.drawable.ic_number3, R.drawable.ic_number4};
         String [] titles = {"Adriel", "Adri", "Ryandel", "Rir"};
 
-        for (int i = 0; i< titles.length && i < icons.length; i ++){
+        for (int i = 0; i <100; i ++){
 
             Information current = new Information();
-            current.iconId = icons[i];
-            current.title = titles[i];
+            current.iconId = icons[i%icons.length];
+            current.title = titles[i%titles.length];
             data.add(current);
         }
 
