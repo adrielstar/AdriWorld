@@ -2,15 +2,19 @@ package ga.adrielwalter.adriworld;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import activity.NavigationDrawerFragment;
+import activity.SubActivity;
+
 public class MainActivity extends AppCompatActivity {
 
-    private android.support.v7.widget.Toolbar toolbar;
+    private Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +23,11 @@ public class MainActivity extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        NavigationDrawerFragment drawerFragment = (NavigationDrawerFragment)
+                getSupportFragmentManager().findFragmentById(R.id.fragment_navigation_drawer);
+        drawerFragment.setUp(R.id.fragment_navigation_drawer,(DrawerLayout)findViewById(R.id.drawer_layout), toolbar);
     }
 
     @Override
@@ -37,11 +46,11 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this,"Hey you just hit"+item.getTitle(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Hey you just hit" + item.getTitle(), Toast.LENGTH_SHORT).show();
             return true;
         }
 
-        if (id == R.id.navigate){
+        if (id == R.id.navigate) {
             startActivity(new Intent(this, SubActivity.class));
         }
 
